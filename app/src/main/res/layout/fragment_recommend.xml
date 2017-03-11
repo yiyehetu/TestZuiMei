@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/designer_nav_type"
+        android:drawableRight="@drawable/nav_designer_type_selector"
+        android:gravity="start"
+        android:padding="10dp"
+        android:text="全部"
+        android:textColor="@color/white_85_alpha"
+        android:visibility="gone"/>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/textView">
+
+        <android.support.v7.widget.RecyclerView
+            android:background="@color/designer_nav_type"
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <GridView
+        android:id="@+id/gridView"
+        android:layout_below="@id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="3"
+        android:background="@color/designer_nav_type"
+        android:visibility="gone">
+    </GridView>
+
+</RelativeLayout>

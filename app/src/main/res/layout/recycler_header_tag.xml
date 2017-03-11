@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+          android:id="@+id/tagTextView"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="@dimen/designer_header_big"
+          android:layout_marginRight="@dimen/designer_header_big"
+          android:background="@drawable/tag_bg_rect"
+          android:paddingBottom="4.5dp"
+          android:paddingLeft="@dimen/designer_header_big"
+          android:paddingRight="@dimen/designer_header_big"
+          android:paddingTop="4.5dip"
+          android:text="test"
+          android:textColor="@color/white_60_alpha"
+          android:textSize="@dimen/textsize_0"/>

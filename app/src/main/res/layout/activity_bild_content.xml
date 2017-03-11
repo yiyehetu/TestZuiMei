@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/sv_bild"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_title_bild"/>
+
+            <include layout="@layout/item_author_bild"/>
+
+            <ViewStub
+                android:id="@+id/vs_native"
+                android:inflatedId="@+id/vs_native_inflated"
+                android:layout="@layout/item_content_bild"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <ViewStub
+                android:id="@+id/vs_web"
+                android:inflatedId="@+id/vs_web_inflated"
+                android:layout="@layout/item_web_bild"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <include layout="@layout/item_share_bild"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <include
+        android:id="@+id/ll_load"
+        layout="@layout/item_load_bild"/>
+
+</RelativeLayout>

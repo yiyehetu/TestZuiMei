@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/mRelativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_cover"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/rhombus_mask_in_rectangle"/>
+
+    <TextView
+        android:id="@+id/tv_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="275dp"
+        android:background="@color/white_50_alpha"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:text="6638 关注"
+        android:textSize="@dimen/textsize_1"
+        android:textColor="@color/black_70_alpha"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/iv_cover"
+        android:background="@color/designer_tab_bg_color"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingBottom="20dp">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dp"
+            android:gravity="center"
+            android:text="Laura Wass"
+            android:textColor="@color/white_60_alpha"
+            android:textSize="@dimen/textsize_3"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tv_job"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="wxyz 创始人"
+            android:textColor="@color/white_30_alpha"
+            android:textSize="@dimen/textsize_1"/>
+
+        <TextView
+            android:id="@+id/tv_focus"
+            android:layout_width="140dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/focus_item_textview_selector"
+            android:gravity="center"
+            android:text="@string/add_foucus"
+            android:textColor="@color/focus_item_text_color"
+            android:textSize="@dimen/textsize_1"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_below="@id/iv_cover"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-35dp"
+        android:src="@drawable/rhombus_mask_in_square"/>
+</RelativeLayout>

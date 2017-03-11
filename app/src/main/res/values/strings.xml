@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">最美有物</string>
+    <string name="first_pager">画报</string>
+    <string name="second_pager">有物</string>
+    <string name="third_pager">设计师</string>
+    <string name="four_pager">我</string>
+    <string name="add_foucus">+ 关注</string>
+    <string name="is_focused">已关注</string>
+</resources>

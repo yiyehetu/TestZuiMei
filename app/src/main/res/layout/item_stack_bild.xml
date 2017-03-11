@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent">
+
+    <!--占位-->
+    <View
+        android:id="@+id/stub"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"/>
+
+    <!--布局-->
+    <LinearLayout
+        android:id="@+id/ll_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/stub"
+        android:background="@android:color/white"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="0.5dp"
+                android:background="@color/black_30_alpha"/>
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:text="测试"
+                android:textColor="@color/black_30_alpha"
+                android:textSize="13sp"/>
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="0.5dp"
+                android:background="@color/black_30_alpha"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="樱花易逝，不如在樱花碟边杯酒人生"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tv_subtitle"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="素食主义者的设计之路"
+            android:textColor="@color/black_50_alpha"
+            android:textSize="16sp"/>
+
+        <ImageView
+            android:id="@+id/iv_cover"
+            android:layout_width="260dp"
+            android:layout_height="260dp"
+            android:layout_marginBottom="40dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/rhombus_mask_in_square"/>
+
+    </LinearLayout>
+
+    <!--头像-->
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"/>
+
+</RelativeLayout>

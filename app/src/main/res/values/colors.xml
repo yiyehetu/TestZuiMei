@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#FF4081</color>
+    <!--nav-->
+    <color name="main_tab_title_normal">#ffbababa</color>
+    <color name="main_tab_title_selected">#ff0e0e0e</color>
+    <!--tab-->
+    <color name="black_tab_stroke">#ffdbdde2</color>
+    <color name="designer_tab_bg_color">#ff131313</color>
+    <!--tag flow layout-->
+    <color name="white_10_alpha">#1affffff</color>
+    <color name="white_20_alpha">#33ffffff</color>
+    <color name="white_30_alpha">#4dffffff</color>
+    <color name="white_35_alpha">#59ffffff</color>
+    <color name="white_40_alpha">#5affffff</color>
+    <color name="white_45_alpha">#73ffffff</color>
+    <color name="white_50_alpha">#80ffffff</color>
+    <color name="white_55_alpha">#8cffffff</color>
+    <color name="white_60_alpha">#99ffffff</color>
+    <color name="white_65_alpha">#a6ffffff</color>
+    <color name="white_70_alpha">#b3ffffff</color>
+    <color name="white_75_alpha">#bfffffff</color>
+    <color name="white_80_alpha">#ccffffff</color>
+    <color name="white_85_alpha">#d8ffffff</color>
+    <color name="white_90_alpha">#e6ffffff</color>
+
+    <color name="black">#ff000000</color>
+    <color name="black_10_alpha">#1a000000</color>
+    <color name="black_15_alpha">#26000000</color>
+    <color name="black_20_alpha">#33000000</color>
+    <color name="black_25_alpha">#40000000</color>
+    <color name="black_30_alpha">#4d000000</color>
+    <color name="black_35_alpha">#59000000</color>
+    <color name="black_40_alpha">#66000000</color>
+    <color name="black_50_alpha">#80000000</color>
+    <color name="black_60_alpha">#99000000</color>
+    <color name="black_70_alpha">#b3000000</color>
+    <color name="black_75_alpha">#bf000000</color>
+    <color name="black_7_alpha">#12000000</color>
+    <color name="black_80_alpha">#cc000000</color>
+    <color name="black_85_alpha">#d9000000</color>
+    <color name="black_90_alpha">#e6000000</color>
+    <color name="follow_ripple_color">#ff75d4da</color>
+
+    <color name="designer_nav_type">#222222</color>
+</resources>

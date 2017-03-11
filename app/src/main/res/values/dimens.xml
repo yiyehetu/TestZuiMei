@@ -1,0 +1,29 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="textsize_0">12sp</dimen>
+    <dimen name="textsize_1">13sp</dimen>
+    <dimen name="textsize_2">16sp</dimen>
+    <dimen name="textsize_3">18sp</dimen>
+    <dimen name="textsize_4">10sp</dimen>
+
+    <!--tab designer-->
+    <dimen name="designer_tab_bottom_line_height">1.0dp</dimen>
+    <dimen name="designer_tab_bottom_line_width">8.0dp</dimen>
+    <dimen name="designer_tab_height">40.0dp</dimen>
+    <dimen name="designer_tab_indicator_item_padding_left">10.0dp</dimen>
+    <dimen name="designer_tab_indicator_item_padding_right">10.0dp</dimen>
+    <dimen name="designer_tab_max_width">264.0dp</dimen>
+    <dimen name="designer_tab_text_size">14.0sp</dimen>
+    <dimen name="designer_tab_text_size_2line">12.0sp</dimen>
+    <dimen name="designer_tab_scrollable_min_width">72.0dp</dimen>
+
+    <!--flow tab-->
+    <dimen name="designer_header_small">8dp</dimen>
+    <dimen name="designer_header_medium">12dp</dimen>
+    <dimen name="designer_header_big">16dp</dimen>
+    <dimen name="app_fill_width">360dp</dimen>
+    <dimen name="designer_header_xbig">20dp</dimen>
+
+</resources>

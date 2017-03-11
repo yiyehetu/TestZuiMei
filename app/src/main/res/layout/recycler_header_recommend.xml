@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:minWidth="@dimen/app_fill_width"
+              android:layout_height="wrap_content"
+              android:background="@color/designer_tab_bg_color"
+              android:orientation="horizontal"
+              android:paddingLeft="@dimen/designer_header_medium">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/designer_header_medium"
+        android:layout_marginRight="@dimen/designer_header_small"
+        android:layout_marginTop="@dimen/designer_header_xbig"
+        android:src="@drawable/tag_flag"/>
+
+    <com.zhy.view.flowlayout.TagFlowLayout
+        android:id="@+id/tagFlowLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/designer_header_big"
+        android:layout_marginBottom="@dimen/designer_header_big"/>
+</LinearLayout>
