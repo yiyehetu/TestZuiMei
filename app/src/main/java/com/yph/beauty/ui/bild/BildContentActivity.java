@@ -132,12 +132,28 @@ public class BildContentActivity extends BaseActivity implements BildContentCont
             public void run() {
                 // 描述判断
                 int count = tvDescription.getLineCount();
+                LogUtils.e("----> count = " + count);
                 if(count > 5){
-                    LogUtils.e("----> count = " + count);
                     tvDescription.setMaxLines(5);
-                    TextView tvOpen = (TextView) vsOpen.inflate();
+                    final TextView tvOpen = (TextView) vsOpen.inflate();
                     tvOpen.setText("展开");
                     tvOpen.setSelected(false);
+
+                    // 点击监听
+                    tvOpen.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if(tvOpen.isSelected()){
+                                tvDescription.setMaxLines(5);
+                                tvOpen.setText("展开");
+                                tvOpen.setSelected(false);
+                            }else{
+                                tvDescription.setMaxLines(100);
+                                tvOpen.setText("收起");
+                                tvOpen.setSelected(true);
+                            }
+                        }
+                    });
                 }
             }
         });

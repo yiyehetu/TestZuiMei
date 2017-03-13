@@ -21,6 +21,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
+        android:paddingBottom="20dp"
         android:background="@android:color/white"
         android:gravity="center_horizontal"
         android:orientation="vertical">
@@ -81,7 +82,7 @@
             android:id="@+id/vs_open"
             android:inflatedId="@+id/vs_open_inflated"
             android:layout="@layout/item_open_text"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_width="match_parent"
