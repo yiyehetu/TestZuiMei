@@ -34,6 +34,7 @@
                 android:layout_height="wrap_content"/>
 
             <include layout="@layout/item_share_bild"/>
+            <include layout="@layout/item_designer_comment"/>
 
         </LinearLayout>
 

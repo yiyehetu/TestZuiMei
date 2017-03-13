@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@android:color/black"
+              android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:gravity="center|bottom"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="设计师 &amp; 作品"
+        android:textColor="@color/white_70_alpha"
+        android:textSize="14sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/white"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_designerAvatar"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/rhombus_mask_in_square"/>
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/tv_designerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Lorenzo Buffa"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:textColor="@color/black_40_alpha"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:id="@+id/tv_designerLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Analog Watch Co.创始人"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:text="+ 关注"
+            android:background="@drawable/focus_item_rect"
+            android:layout_marginTop="15dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_description"
+            android:textSize="14sp"
+            android:textColor="@color/black_40_alpha"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="Amanda Pearl Brotman 曾经做了12年的芭蕾舞演员，后来去 Barnard College 学习艺术史和视觉艺术。在 Marc Jacobs 工作4年后，她于2007年帮助设计师 Erin Fetherston 在纽约开了一个店铺，之后 Amanda Pearl Brotman 在2月的纽约时装周推出了自己的品牌 Amanda Pearl。"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <ViewStub
+            android:id="@+id/vs_open"
+            android:inflatedId="@+id/vs_open_inflated"
+            android:layout="@layout/item_open_text"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -53,6 +53,16 @@ public class BildContentActivity extends BaseActivity implements BildContentCont
     ViewStub vsNative;
     @BindView(R.id.vs_web)
     ViewStub vsWeb;
+    @BindView(R.id.iv_designerAvatar)
+    ImageView ivDesignerAvatar;
+    @BindView(R.id.tv_designerName)
+    TextView tvDesignerName;
+    @BindView(R.id.tv_designerLabel)
+    TextView tvDesignerLabel;
+    @BindView(R.id.tv_description)
+    TextView tvDescription;
+    @BindView(R.id.vs_open)
+    ViewStub vsOpen;
 
     // 当前画报id
     private int mId;
@@ -99,6 +109,42 @@ public class BildContentActivity extends BaseActivity implements BildContentCont
         loadAuthor(data);
         // 内容
         loadContent(data, list, isWeb);
+        // 设计师
+        loadDesigner(data);
+    }
+
+    private void loadDesigner(BildContentInfo.DataBean data) {
+        BildContentInfo.DataBean.DesignersBean designer = data.getDesigners().get(0);
+        // designer avatar
+        Glide.with(this)
+                .load(designer.getAvatar_url())
+                .placeholder(R.drawable.rhombus_mask_in_square)
+                .transform(new GlideCircleTransform(this, 0, Color.WHITE))
+                .crossFade()
+                .into(ivDesignerAvatar);
+
+        tvDesignerName.setText(designer.getName());
+        tvDesignerLabel.setText(designer.getLabel());
+        tvDescription.setText(designer.getDescription());
+
+        tvDescription.post(new Runnable() {
+            @Override
+            public void run() {
+                // 描述判断
+                int count = tvDescription.getLineCount();
+                if(count > 5){
+                    LogUtils.e("----> count = " + count);
+                    tvDescription.setMaxLines(5);
+                    TextView tvOpen = (TextView) vsOpen.inflate();
+                    tvOpen.setText("展开");
+                    tvOpen.setSelected(false);
+                }
+            }
+        });
+
+
+
+
     }
 
     private void loadContent(BildContentInfo.DataBean data, List<HtmlText[]> list, boolean isWeb) {
