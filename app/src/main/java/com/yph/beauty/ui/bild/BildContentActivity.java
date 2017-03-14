@@ -158,9 +158,6 @@ public class BildContentActivity extends BaseActivity implements BildContentCont
             }
         });
 
-
-
-
     }
 
     private void loadContent(BildContentInfo.DataBean data, List<HtmlText[]> list, boolean isWeb) {

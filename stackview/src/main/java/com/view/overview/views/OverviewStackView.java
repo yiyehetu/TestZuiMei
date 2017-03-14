@@ -160,7 +160,6 @@ public class OverviewStackView extends FrameLayout implements OverviewAdapter.Ca
         // Update the stack transforms
         OverviewCardTransform prevTransform = null;
         for (int i = itemCount - 1; i >= 0; i--) {
-
             // 这里将空的 OverviewCardTransform 丢进去
             OverviewCardTransform transform = mLayoutAlgorithm.getStackTransform(i,
                     stackScroll, cardTransforms.get(i), prevTransform);
@@ -200,7 +199,6 @@ public class OverviewStackView extends FrameLayout implements OverviewAdapter.Ca
     boolean synchronizeStackViewsWithModel() {
         // StackView发生改变
         if (mStackViewsDirty) {
-
             float stackScroll = mStackScroller.getStackScroll();
 
             int[] visibleRange = mTmpVisibleRange;
@@ -253,6 +251,7 @@ public class OverviewStackView extends FrameLayout implements OverviewAdapter.Ca
             mStackViewsClipDirty = true;
             return true;
         }
+
         return false;
     }
 
@@ -465,6 +464,7 @@ public class OverviewStackView extends FrameLayout implements OverviewAdapter.Ca
             requestLayout();
             mStackScroller.setStackScroll(5.8f);
         }
+
         requestSynchronizeStackViewsWithModel();
     }
 
@@ -543,11 +543,9 @@ public class OverviewStackView extends FrameLayout implements OverviewAdapter.Ca
     // 消费池接口2
     @Override
     public void prepareObjectToEnterPool(ViewHolder vh) {
-
         mViewHolderMap.remove(vh.getContainer());
         // Detach the view from the hierarchy
         detachViewFromParent(vh.getContainer());
-
         // Reset the view properties
         vh.getContainer().resetViewProperties();
     }
@@ -556,7 +554,6 @@ public class OverviewStackView extends FrameLayout implements OverviewAdapter.Ca
     @Override
     public void prepareObjectToLeavePool(ViewHolder vh, Integer position, boolean isNewView) {
         // Rebind the task and request that this task's data be filled into the TaskView
-
         mViewHolderMap.put(vh.getContainer(), vh);
         vh.setPosition(position);
         mStackAdapter.bindViewHolder(vh, position);
@@ -603,16 +600,14 @@ public class OverviewStackView extends FrameLayout implements OverviewAdapter.Ca
         // 滚动状态变化
         // 判断处于顶部
         Log.e("TAG", "---->p = " + p);
-        if(!isTop && Math.abs(p) == 0){
-            Log.e("TAG", "---->执行");
+        if(!isTop && p < 0) {
             mCb.onScrollTop();
             isTop = true;
         }
 
-        if(isTop && Math.abs(p) > 1.0f){
+        if(isTop && p > 0){
             isTop = false;
         }
-
         requestSynchronizeStackViewsWithModel();
 
         if (Build.VERSION.SDK_INT >= 16) {
@@ -632,9 +627,7 @@ public class OverviewStackView extends FrameLayout implements OverviewAdapter.Ca
      */
     interface Callbacks {
         public void onCardDismissed(int position);
-
         public void onAllCardsDismissed();
-
         // 自定义监听
         public void onScrollTop();
     }

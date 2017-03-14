@@ -34,6 +34,10 @@ public class StackAdapter extends OverviewAdapter<StackAdapter.Holder, ArticlesB
     //    private BildInfo.DataBean mDataBean;
     private List<ArticlesBean> mArticles;
 
+    public List<ArticlesBean> getArticles() {
+        return mArticles;
+    }
+
     public StackAdapter(Context context, List<ArticlesBean> articles) {
         super(articles);
         mContext = context;
@@ -68,6 +72,7 @@ public class StackAdapter extends OverviewAdapter<StackAdapter.Holder, ArticlesB
                 .centerCrop()
                 .crossFade()
                 .into(holder.ivCover);
+
         // 头像
         Glide.with(mContext)
                 .load(article.getAuthor().getAvatar_url())

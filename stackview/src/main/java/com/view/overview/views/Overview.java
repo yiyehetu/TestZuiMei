@@ -136,9 +136,7 @@ public class Overview extends FrameLayout implements OverviewStackView.Callbacks
 
     public interface RecentsViewCallbacks {
         public void onCardDismissed(int position);
-
         public void onAllCardsDismissed();
-
         // 自定义监听
         public void onScollTop();
     }

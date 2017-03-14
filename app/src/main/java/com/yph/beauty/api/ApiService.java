@@ -47,6 +47,4 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("designer/{id}/follow/cancel/")
     Observable<DesignerInfo> unFollowDesigner(@Path("id") int id, @QueryMap Map<String, String> map, @Field("user_id") String user_id);
-
-
 }

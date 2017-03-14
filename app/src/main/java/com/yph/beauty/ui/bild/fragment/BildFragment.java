@@ -17,11 +17,11 @@ import butterknife.BindView;
  * Created by yph
  * Time is 2016/11/25 16:41
  * Good Good Study, Day Day Up
- *
+ * <p>
  * 画报V
  */
 
-public class BildFragment extends BaseFragment  implements BildContract.View, Overview.RecentsViewCallbacks{
+public class BildFragment extends BaseFragment implements BildContract.View, Overview.RecentsViewCallbacks {
     @BindView(R.id.ov_bild)
     Overview mOverview;
 
@@ -47,7 +47,7 @@ public class BildFragment extends BaseFragment  implements BildContract.View, Ov
     @Override
     public void showStack(BildInfo bildInfo) {
         List<BildInfo.DataBean.ArticlesBean> articles = bildInfo.getData().getArticles();
-        if(articles != null && articles.size() > 0) {
+        if (articles != null && articles.size() > 0) {
             // 反转
             Collections.reverse(articles);
             mStackAdapter = new StackAdapter(getContext(), articles);
@@ -58,7 +58,7 @@ public class BildFragment extends BaseFragment  implements BildContract.View, Ov
     @Override
     public void showMoreStack(BildInfo bildInfo) {
         List<BildInfo.DataBean.ArticlesBean> articles = bildInfo.getData().getArticles();
-        if(articles != null && articles.size() > 0) {
+        if (articles != null && articles.size() > 0) {
             mStackAdapter.addArticles(articles);
         }
     }
@@ -86,7 +86,13 @@ public class BildFragment extends BaseFragment  implements BildContract.View, Ov
 
     @Override
     public void onScollTop() {
-        mBildPresenter.getMoreStackData();
+//        OverviewStackView mStakView = (OverviewStackView) mOverview.getChildAt(0);
+//        int childCount = mStakView.getChildCount();
+//        List<BildInfo.DataBean.ArticlesBean> articles = mStackAdapter.getArticles();
+//        if(articles.size() == childCount) {
+//            Log.e("TAG", "---->执行");
+            mBildPresenter.getMoreStackData();
+//        }
     }
 
 }
