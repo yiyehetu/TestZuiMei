@@ -196,9 +196,11 @@ public class OverviewStackViewLayoutAlgorithm {
                 screenYToCurveProgress(mStackVisibleRect.bottom - (mStackVisibleRect.bottom - mStackRect.bottom));
 
         // Update the task offsets
+        // 更新任务偏移量
         float pAtBackMostCardTop = 0.5f;
         float pAtFrontMostCardTop = pAtBackMostCardTop;
         for (int i = 0; i < itemCount; i++) {
+//            Log.e("TAG", "---->pAtFrontMostCardTop = " + pAtBackMostCardTop);
             mTaskProgressMap.put(i, pAtFrontMostCardTop);
 
             if (i < (itemCount - 1)) {

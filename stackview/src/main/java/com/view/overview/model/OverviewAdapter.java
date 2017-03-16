@@ -61,7 +61,6 @@ public abstract class OverviewAdapter<VH extends ViewHolder, Model extends Objec
         }
 
         mItems.add(position, model);
-        Log.e("TAG", "---->notifyDataSetInserted mItems.size = " + mItems.size());
 
         if (mCallbacks != null) {
             mCallbacks.onCardAdded(this, position);
@@ -69,16 +68,20 @@ public abstract class OverviewAdapter<VH extends ViewHolder, Model extends Objec
     }
 
     public void notifyDataSetInsertedAll(List<Model> newItems) {
-        if (newItems != null && newItems.size() > 0) {
+        if(newItems == null){
+            return;
+        }
+        int size = newItems.size();
 
-            for (int i = 0; i < newItems.size(); i++) {
+        if (size > 0) {
+            for (int i = 0; i < size; i++) {
+                // 按照位置添加
                 mItems.add(i, newItems.get(i));
             }
 
             Log.e("TAG", "---->mItems.size = " + mItems.size());
-
             if (mCallbacks != null) {
-                mCallbacks.onCardAdded(this);
+                mCallbacks.onCardAdded(this, size);
             }
         }
     }

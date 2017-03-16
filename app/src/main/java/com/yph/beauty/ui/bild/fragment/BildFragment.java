@@ -1,5 +1,7 @@
 package com.yph.beauty.ui.bild.fragment;
 
+import android.util.Log;
+
 import com.view.overview.views.Overview;
 import com.yph.beauty.R;
 import com.yph.beauty.base.BaseFragment;
@@ -86,13 +88,8 @@ public class BildFragment extends BaseFragment implements BildContract.View, Ove
 
     @Override
     public void onScollTop() {
-//        OverviewStackView mStakView = (OverviewStackView) mOverview.getChildAt(0);
-//        int childCount = mStakView.getChildCount();
-//        List<BildInfo.DataBean.ArticlesBean> articles = mStackAdapter.getArticles();
-//        if(articles.size() == childCount) {
-//            Log.e("TAG", "---->执行");
-            mBildPresenter.getMoreStackData();
-//        }
+        Log.e("TAG", "---->执行");
+        mBildPresenter.getMoreStackData();
     }
 
 }

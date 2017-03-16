@@ -47,6 +47,10 @@ public class StackAdapter extends OverviewAdapter<StackAdapter.Holder, ArticlesB
     public void addArticles(List<ArticlesBean> articles){
         // 逆序处理
         Collections.reverse(articles);
+//        int size = articles.size();
+//        for(int i = 0; i < articles.size(); i++) {
+//            notifyDataSetInserted(articles.get(i), i , a);
+//        }
 
         notifyDataSetInsertedAll(articles);
     }

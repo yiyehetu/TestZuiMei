@@ -69,14 +69,14 @@ public class BildPresenter implements BildContract.Presenter{
 
             @Override
             public void onError(Throwable e) {
-                LogUtils.e(TAG, "---->onError" + e.getMessage());
+                LogUtils.e(TAG, "---->onError:  " + e.getMessage());
                 mView.showStackError();
             }
 
             @Override
             public void onNext(BildInfo bildInfo) {
                 if (bildInfo.getResult() == 1) {
-                    LogUtils.e(TAG, "---->onNext:" + bildInfo.toString());
+                    LogUtils.e(TAG, "---->onNext:  " + bildInfo.toString());
                     hasNext = (bildInfo.getData().getHas_next() == 1) ? true : false;
                     if (currPage == 1) {
                         mView.showStack(bildInfo);

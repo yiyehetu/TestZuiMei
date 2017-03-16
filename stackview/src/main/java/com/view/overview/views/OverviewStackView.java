@@ -40,6 +40,12 @@ public class OverviewStackView extends FrameLayout implements OverviewAdapter.Ca
     // 顶部判断(自定义)
     private boolean isTop = false;
 
+    public int getCount() {
+        return count;
+    }
+
+    private int count;
+
     ObjectPool<ViewHolder, Integer> mViewPool;
     ArrayList<OverviewCardTransform> mCurrentCardTransforms = new ArrayList<OverviewCardTransform>();
     HashMap<OverviewCard, ViewHolder> mViewHolderMap = new HashMap<>();
@@ -345,6 +351,7 @@ public class OverviewStackView extends FrameLayout implements OverviewAdapter.Ca
 
         // Measure each of the TaskViews
         int childCount = getChildCount();
+        count = childCount;
         for (int i = 0; i < childCount; i++) {
             OverviewCard tv = (OverviewCard) getChildAt(i);
             if (tv.getBackground() != null) {
@@ -459,19 +466,28 @@ public class OverviewStackView extends FrameLayout implements OverviewAdapter.Ca
         return frame.contains((int) x, (int) y);
     }
 
-    public void onCardAdded(OverviewAdapter stack, int position) {
-        if(position == 0){
-            requestLayout();
-            mStackScroller.setStackScroll(5.8f);
-        }
-
+    public void onCardAdded(OverviewAdapter stack, int size) {
+//        requestSynchronizeStackViewsWithModel();
+        Log.e("TAG", "---->onCardAdded");
+        requestLayout();
+        Log.e("TAG", "---->requestLayout");
         requestSynchronizeStackViewsWithModel();
+        Log.e("TAG", "---->requestSynchronizeStackViewsWithModel");
+        // 0.5f 是估计值
+        updateMinMaxScroll(false);
+        float taskScroll = mLayoutAlgorithm.getStackScrollForTask(size) - 0.5f;
+        Log.e("TAG", "---->taskScroll = " + taskScroll);
+        // 滚动到指定位置
+        mStackScroller.setStackScroll(taskScroll);
     }
 
     public void onCardAdded(OverviewAdapter stack){
         requestLayout();
         requestSynchronizeStackViewsWithModel();
-        mStackScroller.setStackScroll(5.8f);
+        float taskScroll = mLayoutAlgorithm.getStackScrollForTask(30);
+        Log.e("TAG", "---->taskScroll = " + taskScroll);
+        // 滚动到指定位置
+        mStackScroller.setStackScroll(taskScroll - 0.5f);
     }
 
     public void onCardRemoved(OverviewAdapter stack, int removedTask) {
@@ -561,6 +577,13 @@ public class OverviewStackView extends FrameLayout implements OverviewAdapter.Ca
 
         // Find the index where this task should be placed in the stack
         int insertIndex = -1;
+
+        if(position == 0){
+            isTop = true;
+        }else{
+            isTop = false;
+        }
+
         int taskIndex = position;
         if (taskIndex != -1) {
             int childCount = getChildCount();
@@ -573,6 +596,7 @@ public class OverviewStackView extends FrameLayout implements OverviewAdapter.Ca
                 }
             }
         }
+
 
         // Add/attach the view to the hierarchy
         if (isNewView) {
@@ -599,17 +623,12 @@ public class OverviewStackView extends FrameLayout implements OverviewAdapter.Ca
     public void onScrollChanged(float p) {
         // 滚动状态变化
         // 判断处于顶部
-        Log.e("TAG", "---->p = " + p);
-        if(!isTop && p < 0) {
+        if(isTop && p == 0) {
             mCb.onScrollTop();
-            isTop = true;
-        }
-
-        if(isTop && p > 0){
             isTop = false;
         }
-        requestSynchronizeStackViewsWithModel();
 
+        requestSynchronizeStackViewsWithModel();
         if (Build.VERSION.SDK_INT >= 16) {
             postInvalidateOnAnimation();
         } else {
