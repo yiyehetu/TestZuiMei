@@ -67,7 +67,7 @@ public class BildContentPresenter implements BildContentContract.Presenter{
                     BildContentInfo.DataBean data = bildContentInfo.getData();
                     if (TextUtils.isEmpty(data.getContent())) {
                         // web
-                        mView.hideLoadView();
+//                        mView.hideLoadView();
                         mView.showContent(data, null, true);
                     }else{
                         // native

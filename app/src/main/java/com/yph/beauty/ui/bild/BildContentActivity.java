@@ -4,6 +4,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewStub;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -165,13 +167,26 @@ public class BildContentActivity extends BaseActivity implements BildContentCont
             // web
             View inflate = vsWeb.inflate();
             WebView wvContent = (WebView) inflate;
+            WebSettings settings = wvContent.getSettings();
+            settings.setCacheMode(WebSettings.LOAD_DEFAULT);
+            settings.setDomStorageEnabled(true);
             wvContent.loadUrl(data.getWeb_view_url());
+            wvContent.setWebChromeClient(new WebChromeClient(){
+                @Override
+                public void onProgressChanged(WebView view, int newProgress) {
+                    super.onProgressChanged(view, newProgress);
+                    if (newProgress >= 100) {
+                        hideLoadView();
+                    }
+                }
+            });
         } else {
             // native
             View inflate = vsNative.inflate();
             CustomListView lvContent = (CustomListView) inflate;
             HtmlTextAdapter htmlTextAdapter = new HtmlTextAdapter(this, list);
             lvContent.setAdapter(htmlTextAdapter);
+
         }
     }
 
