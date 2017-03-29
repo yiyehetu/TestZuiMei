@@ -39,6 +39,7 @@ public class BitmapUtils {
         borderPaint.setStrokeWidth(borderWidthHalf);
         borderPaint.setColor(color);
 
+
         //添加边框
         canvas.drawCircle(canvas.getWidth() / 2, canvas.getWidth() / 2, newBitmapSquareWidth / 2, borderPaint);
 

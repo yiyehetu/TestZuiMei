@@ -12,9 +12,10 @@ import com.yph.beauty.util.LogUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import rx.Observable;
 import rx.Subscriber;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -23,11 +24,11 @@ import rx.schedulers.Schedulers;
  * Good Good Study, Day Day Up
  */
 
-public class BildContentPresenter implements BildContentContract.Presenter{
+public class BildContentPresenter implements BildContentContract.Presenter {
     private final String TAG = BildContentPresenter.class.getSimpleName();
     private BildContentContract.View mView;
     private int mId;
-    private Subscriber<BildContentInfo> subscriber;
+    private Subscription subscription;
 
     public BildContentPresenter(int id, BildContentContract.View view) {
         mId = id;
@@ -36,56 +37,58 @@ public class BildContentPresenter implements BildContentContract.Presenter{
 
     @Override
     public void start() {
-       getContentData();
+        getContentData();
     }
 
     @Override
     public void stop() {
-        if(subscriber != null && !subscriber.isUnsubscribed()){
-            subscriber.unsubscribe();
+        if (subscription != null && !subscription.isUnsubscribed()) {
+            subscription.unsubscribe();
         }
     }
 
     @Override
     public void getContentData() {
-        Observable<BildContentInfo> contentInfo = ApiManager.getInstance().getApiService().getBildContentInfo(mId, ApiConst.BASE_MAP);
-        subscriber = new Subscriber<BildContentInfo>() {
-            @Override
-            public void onCompleted() {
-                LogUtils.e(TAG, "---->onCompleted");
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                LogUtils.e(TAG, "---->onError:" + e.getMessage());
-            }
-
-            @Override
-            public void onNext(BildContentInfo bildContentInfo) {
-                LogUtils.e(TAG, "---->onNext:" + bildContentInfo.toString());
-                if(bildContentInfo != null && bildContentInfo.getResult() == 1){
-                    BildContentInfo.DataBean data = bildContentInfo.getData();
-                    if (TextUtils.isEmpty(data.getContent())) {
-                        // web
-//                        mView.hideLoadView();
-                        mView.showContent(data, null, true);
-                    }else{
-                        // native
-                        String content = data.getContent();
-                        String[] splits = getHtmlGroup(content);
-                        List<HtmlText[]> list = handleHtml(splits);
-                        mView.hideLoadView();
-                        mView.showContent(data, list, false);
+        subscription = ApiManager.getInstance().getApiService().getBildContentInfo(mId, ApiConst.BASE_MAP)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .filter(new Func1<BildContentInfo, Boolean>() {
+                    @Override
+                    public Boolean call(BildContentInfo bildContentInfo) {
+                        return bildContentInfo != null && bildContentInfo.getResult() == 1;
+                    }
+                })
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<BildContentInfo>() {
+                    @Override
+                    public void onCompleted() {
+                        LogUtils.e(TAG, "---->onCompleted");
                     }
 
-                }
-            }
-        };
+                    @Override
+                    public void onError(Throwable e) {
+                        LogUtils.e(TAG, "---->onError:" + e.getMessage());
+                    }
 
-        contentInfo.subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(subscriber);
+                    @Override
+                    public void onNext(BildContentInfo bildContentInfo) {
+                        LogUtils.e(TAG, "---->onNext:" + bildContentInfo.toString());
+                        BildContentInfo.DataBean data = bildContentInfo.getData();
+                        if (TextUtils.isEmpty(data.getContent())) {
+                            // web
+                            mView.hideLoadView();
+                            mView.showContent(data, null, true);
+                        } else {
+                            // native
+                            String content = data.getContent();
+                            String[] splits = getHtmlGroup(content);
+                            List<HtmlText[]> list = handleHtml(splits);
+                            mView.hideLoadView();
+                            mView.showContent(data, list, false);
+                        }
+                    }
+                });
+
     }
 
     // 按组分配数据
