@@ -167,6 +167,17 @@ public class ProjectFragment extends BaseFragment implements ProjectContract.Vie
                         mProjectPresenter.getMoreListData();
                     }
                 }
+
+                // 滑动不加载图片
+                // 实际效果不行
+//                switch (newState) {
+//                    case RecyclerView.SCROLL_STATE_IDLE :
+//                        Glide.with(getContext()).resumeRequests();
+//                        break;
+//                    default:
+//                        Glide.with(getContext()).pauseRequests();
+//                        break;
+//                }
             }
 
             @Override
