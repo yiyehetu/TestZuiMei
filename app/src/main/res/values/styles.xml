@@ -44,4 +44,10 @@
         <item name="android:textSize">@dimen/textsize_1</item>
     </style>
 
+    <style name="FullScreenStyle" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
+
 </resources>

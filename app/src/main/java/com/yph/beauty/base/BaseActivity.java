@@ -19,7 +19,6 @@ import com.yph.beauty.util.LogUtils;
 import java.util.List;
 
 import butterknife.ButterKnife;
-import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;
 
@@ -45,7 +44,6 @@ public abstract class BaseActivity extends AppCompatActivity implements EasyPerm
         checkPermissions();
     }
 
-    @AfterPermissionGranted(PERMISSION_REQ)
     private void checkPermissions() {
         if (EasyPermissions.hasPermissions(this, PERMS)) {
             LogUtils.e("---->拥有写权限");

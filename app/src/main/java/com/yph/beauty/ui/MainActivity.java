@@ -48,6 +48,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        LogUtils.e("---->onCreate");
         // 初始化Fragment
         initFragment(savedInstanceState);
     }
@@ -85,7 +86,6 @@ public class MainActivity extends BaseActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         switch (id) {
             case R.id.tv_main_bild:
-                LogUtils.e("---->switchFragmentTo bild");
                 transaction.show(mBildFragment)
                         .hide(mHavethingFragment)
                         .hide(mDesignerFragment)
@@ -93,7 +93,6 @@ public class MainActivity extends BaseActivity {
                         .commitAllowingStateLoss();
                 break;
             case R.id.tv_main_havething:
-                LogUtils.e("---->switchFragmentTo havething");
                 transaction.show(mHavethingFragment)
                         .hide(mBildFragment)
                         .hide(mDesignerFragment)
@@ -101,7 +100,6 @@ public class MainActivity extends BaseActivity {
                         .commitAllowingStateLoss();
                 break;
             case R.id.tv_main_designer:
-                LogUtils.e("---->switchFragmentTo designer");
                 transaction.show(mDesignerFragment)
                         .hide(mBildFragment)
                         .hide(mHavethingFragment)
@@ -109,7 +107,6 @@ public class MainActivity extends BaseActivity {
                         .commitAllowingStateLoss();
                 break;
             case R.id.tv_main_me:
-                LogUtils.e("---->switchFragmentTo me");
                 transaction.show(mMeFragment)
                         .hide(mBildFragment)
                         .hide(mHavethingFragment)
@@ -187,5 +184,11 @@ public class MainActivity extends BaseActivity {
         super.onSaveInstanceState(outState, outPersistentState);
         outState.putInt(CURRENT_ID, currentId);
         LogUtils.e("---->onSaveInstanceState");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        LogUtils.e("---->onDestroy");
     }
 }
