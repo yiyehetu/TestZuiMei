@@ -30,9 +30,6 @@ public abstract class BaseActivity extends AppCompatActivity implements EasyPerm
     // 初始化View
     protected abstract void initView();
 
-    private static final int PERMISSION_REQ = 200;
-    private static final String[] PERMS = {android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_PHONE_STATE};
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,19 +38,23 @@ public abstract class BaseActivity extends AppCompatActivity implements EasyPerm
         setContentView(getLayoutId());
         ButterKnife.bind(this);
         initView();
-        checkPermissions();
     }
 
-    private void checkPermissions() {
+    /**
+     * 检查权限，如无权限则请求权限
+     * @param requestCode 请求码
+     * @param PERMS 权限数组
+     * @return 是否拥有权限
+     */
+    protected boolean checkPermissions(int requestCode, String[] PERMS) {
         if (EasyPermissions.hasPermissions(this, PERMS)) {
-            LogUtils.e("---->拥有写权限");
-            // 获取基本信息
-            if(ApiConst.BASE_MAP.isEmpty()){
-                setNetBaseMap();
-            }
+            LogUtils.e("---->拥有权限");
+            return true;
+
         } else {
-            LogUtils.e("---->请求写权限");
-            EasyPermissions.requestPermissions(this, "需要读写权限", PERMISSION_REQ, PERMS);
+            LogUtils.e("---->请求权限");
+            EasyPermissions.requestPermissions(this, "需要权限", requestCode, PERMS);
+            return false;
         }
     }
 
@@ -90,9 +91,7 @@ public abstract class BaseActivity extends AppCompatActivity implements EasyPerm
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
-    /**
-     * 设置网络请求参数
-     */
+    // 设置网络请求参数
     private void setNetBaseMap() {
         ApiConst.BASE_MAP.put("page_size", "30");
         // http://design.zuimeia.com/api/v1/designers/recommend/?page=1
@@ -169,17 +168,29 @@ public abstract class BaseActivity extends AppCompatActivity implements EasyPerm
     @Override
     public void onPermissionsGranted(int requestCode, List<String> perms) {
         LogUtils.e("---->权限允许");
+        onGranted(requestCode, perms);
+    }
+
+    protected void onGranted(int requestCode, List<String> perms){
+
     }
 
     @Override
     public void onPermissionsDenied(int requestCode, List<String> perms) {
         LogUtils.e("---->权限拒绝");
-        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
-            new AppSettingsDialog.Builder(this).build().show();
-        }
+        onDenied(requestCode, perms);
+//        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+//            new AppSettingsDialog.Builder(this).build().show();
+//        }
 //        EasyPermissions.requestPermissions(this, "需要读写权限", PERMISSION_REQ, PERMS);
     }
 
+    protected void onDenied(int requestCode, List<String> perms){
+
+    }
+
+
+    // 暂时未用
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

@@ -3,8 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <VideoView
-        android:id="@+id/vv_splash"
+    <SurfaceView
+        android:visibility="gone"
+        android:id="@+id/sv_splash"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

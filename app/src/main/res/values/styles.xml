@@ -48,6 +48,9 @@
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
+
+        <!--隐藏启动变化-->
+        <item name="android:windowIsTranslucent">true</item>
     </style>
 
 </resources>
