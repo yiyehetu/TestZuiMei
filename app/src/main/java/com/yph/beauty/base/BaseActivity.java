@@ -1,25 +1,16 @@
 package com.yph.beauty.base;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.telephony.TelephonyManager;
-import android.widget.Toast;
 
-import com.yph.beauty.api.ApiConst;
 import com.yph.beauty.app.AppManager;
-import com.yph.beauty.util.LogUtils;
 
 import java.util.List;
 
 import butterknife.ButterKnife;
-import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;
 
 public abstract class BaseActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
@@ -40,23 +31,17 @@ public abstract class BaseActivity extends AppCompatActivity implements EasyPerm
         initView();
     }
 
-    /**
-     * 检查权限，如无权限则请求权限
-     * @param requestCode 请求码
-     * @param PERMS 权限数组
-     * @return 是否拥有权限
-     */
-    protected boolean checkPermissions(int requestCode, String[] PERMS) {
+/*    protected boolean checkPermissions(int requestCode, String[] PERMS) {
         if (EasyPermissions.hasPermissions(this, PERMS)) {
             LogUtils.e("---->拥有权限");
             return true;
 
         } else {
             LogUtils.e("---->请求权限");
-            EasyPermissions.requestPermissions(this, "需要权限", requestCode, PERMS);
+            EasyPermissions.requestPermissions(this, "App需要权限才能正常工作", requestCode, PERMS);
             return false;
         }
-    }
+    }*/
 
     protected void doBeforeSetContentView() {
         // 添加Activity至栈中
@@ -89,36 +74,6 @@ public abstract class BaseActivity extends AppCompatActivity implements EasyPerm
 
         // 设置竖屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-    }
-
-    // 设置网络请求参数
-    private void setNetBaseMap() {
-        ApiConst.BASE_MAP.put("page_size", "30");
-        // http://design.zuimeia.com/api/v1/designers/recommend/?page=1
-        // &page_size=30&device_id=357329076420100&platform=android
-        // &lang=zh&appVersion=1.2.6&appVersionCode=10260&systemVersion=23
-        // &countryCode=CN&user_id=88087
-        // &token=4hb6bf196967c803e626106&package_name=com.zuiapps.zuiworld
-        // READ_PHONE_STATE权限
-        TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        String deviceId = tm.getDeviceId();
-        ApiConst.BASE_MAP.put("device_id", deviceId);
-        ApiConst.BASE_MAP.put("platform", "android");
-        ApiConst.BASE_MAP.put("lang", "zh");
-        // appVersion
-        try {
-            PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            ApiConst.BASE_MAP.put("appVersion", packageInfo.versionName);
-            ApiConst.BASE_MAP.put("appVersionCode", packageInfo.versionCode + "");
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        ApiConst.BASE_MAP.put("systemVersion", Build.VERSION.SDK_INT + "");
-        ApiConst.BASE_MAP.put("countryCode", "CN");
-        ApiConst.BASE_MAP.put("user_id", "88087");
-        ApiConst.BASE_MAP.put("token", "4hb6bf196967c803e626106");
-        ApiConst.BASE_MAP.put("package_name", "com.zuiapps.zuiworld");
-
     }
 
     // 通过Class跳转界面
@@ -167,37 +122,26 @@ public abstract class BaseActivity extends AppCompatActivity implements EasyPerm
 
     @Override
     public void onPermissionsGranted(int requestCode, List<String> perms) {
-        LogUtils.e("---->权限允许");
-        onGranted(requestCode, perms);
-    }
-
-    protected void onGranted(int requestCode, List<String> perms){
 
     }
 
     @Override
     public void onPermissionsDenied(int requestCode, List<String> perms) {
-        LogUtils.e("---->权限拒绝");
-        onDenied(requestCode, perms);
+
 //        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
 //            new AppSettingsDialog.Builder(this).build().show();
 //        }
 //        EasyPermissions.requestPermissions(this, "需要读写权限", PERMISSION_REQ, PERMS);
     }
 
-    protected void onDenied(int requestCode, List<String> perms){
-
-    }
-
-
     // 暂时未用
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == AppSettingsDialog.DEFAULT_SETTINGS_REQ_CODE) {
+      /*  if (requestCode == AppSettingsDialog.DEFAULT_SETTINGS_REQ_CODE) {
             // Do something after user returned from app settings screen, like showing a Toast.
             Toast.makeText(this, "需要读写权限", Toast.LENGTH_SHORT)
                     .show();
-        }
+        }*/
     }
 }
