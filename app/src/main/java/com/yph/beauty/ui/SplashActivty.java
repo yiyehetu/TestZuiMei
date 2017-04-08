@@ -49,8 +49,6 @@ public class SplashActivty extends BaseActivity implements SurfaceHolder.Callbac
 
     @Override
     protected void initView() {
-        isEntered = BeautyApp.getSpUtil(this).getBoolean(AppConst.IS_ENTERED);
-
         if (isEntered) {
             checkPermissions();
         } else {
@@ -66,6 +64,15 @@ public class SplashActivty extends BaseActivity implements SurfaceHolder.Callbac
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void doBeforeSetContentView() {
+        super.doBeforeSetContentView();
+        isEntered = BeautyApp.getSpUtil(this).getBoolean(AppConst.IS_ENTERED);
+        if(!isEntered){
+            setTheme(R.style.FullScreenStyle);
+        }
     }
 
     @Override

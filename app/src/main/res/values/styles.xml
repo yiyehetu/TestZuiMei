@@ -47,11 +47,15 @@
     <style name="FullScreenStyle" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowNoTitle">true</item>
-        <item name="windowActionBar">false</item>
-
         <!--隐藏启动变化-->
-        <!--<item name="android:windowBackground">@drawable/splash_bg</item>-->
         <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="FullScreenStyle2" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <!--隐藏启动变化-->
+        <item name="android:windowBackground">@drawable/splash_bg</item>
     </style>
 
 </resources>

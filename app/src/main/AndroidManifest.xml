@@ -16,7 +16,7 @@
         <activity android:name=".ui.MainActivity"></activity>
         <activity android:name=".ui.bild.BildContentActivity"></activity>
         <activity android:name=".ui.SplashActivty"
-            android:theme="@style/FullScreenStyle">
+            android:theme="@style/FullScreenStyle2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

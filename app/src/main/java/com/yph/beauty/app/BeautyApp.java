@@ -19,7 +19,6 @@ public class BeautyApp extends Application {
     public void onCreate() {
         super.onCreate();
         LogUtils.init(true, 'v', "TAG");
-
     }
 
     public static SpUtils getSpUtil(Context context){
