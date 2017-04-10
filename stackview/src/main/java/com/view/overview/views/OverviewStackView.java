@@ -481,7 +481,7 @@ public class OverviewStackView extends FrameLayout implements OverviewAdapter.Ca
         mStackScroller.setStackScroll(taskScroll);
     }
 
-    public void onCardAdded(OverviewAdapter stack){
+    public void onCardAdded(OverviewAdapter stack) {
         requestLayout();
         requestSynchronizeStackViewsWithModel();
         float taskScroll = mLayoutAlgorithm.getStackScrollForTask(30);
@@ -577,16 +577,11 @@ public class OverviewStackView extends FrameLayout implements OverviewAdapter.Ca
 
         // Find the index where this task should be placed in the stack
         int insertIndex = -1;
-
-        if(position == 0){
-            isTop = true;
-        }else{
-            isTop = false;
-        }
-
         int taskIndex = position;
+
         if (taskIndex != -1) {
             int childCount = getChildCount();
+            Log.e("TAG", "---->childCount: " + childCount);
             for (int i = 0; i < childCount; i++) {
                 OverviewCard insertTV = (OverviewCard) getChildAt(i);
                 ViewHolder holder = mViewHolderMap.get(insertTV);
@@ -597,14 +592,23 @@ public class OverviewStackView extends FrameLayout implements OverviewAdapter.Ca
             }
         }
 
-
+        Log.e("TAG", "---->position: " + position);
+        Log.e("TAG", "---->insertIndex: " + insertIndex);
+        if (position == 0 && insertIndex == 0) {
+            isTop = true;
+        } else {
+            isTop = false;
+        }
+        
         // Add/attach the view to the hierarchy
         if (isNewView) {
+            Log.e("TAG", "---->isNewView: " + isNewView);
             addView(container, insertIndex);
 
             // Set the callbacks and listeners for this new view
             container.setTouchEnabled(true);
         } else {
+            // 复用View
             attachViewToParent(container, insertIndex, container.getLayoutParams());
         }
     }
@@ -616,6 +620,7 @@ public class OverviewStackView extends FrameLayout implements OverviewAdapter.Ca
     }
 
     // 滚动回调
+
     /****
      * TaskStackViewScroller.TaskStackViewScrollerCallbacks
      ****/
@@ -623,7 +628,7 @@ public class OverviewStackView extends FrameLayout implements OverviewAdapter.Ca
     public void onScrollChanged(float p) {
         // 滚动状态变化
         // 判断处于顶部
-        if(isTop && p == 0) {
+        if (isTop && p == 0) {
             mCb.onScrollTop();
             isTop = false;
         }
@@ -646,7 +651,9 @@ public class OverviewStackView extends FrameLayout implements OverviewAdapter.Ca
      */
     interface Callbacks {
         public void onCardDismissed(int position);
+
         public void onAllCardsDismissed();
+
         // 自定义监听
         public void onScrollTop();
     }

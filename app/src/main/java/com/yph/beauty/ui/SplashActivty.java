@@ -63,16 +63,8 @@ public class SplashActivty extends BaseActivity implements SurfaceHolder.Callbac
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    protected void doBeforeSetContentView() {
-        super.doBeforeSetContentView();
         isEntered = BeautyApp.getSpUtil(this).getBoolean(AppConst.IS_ENTERED);
-        if(!isEntered){
-            setTheme(R.style.FullScreenStyle);
-        }
+        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -96,7 +88,6 @@ public class SplashActivty extends BaseActivity implements SurfaceHolder.Callbac
         try {
             AssetFileDescriptor descriptor = getAssets().openFd("video/guide.mp4");
             LogUtils.e("---->读取视频sucess");
-
             mediaPlayer.setDataSource(descriptor.getFileDescriptor(), descriptor.getStartOffset(), descriptor.getLength());
             mediaPlayer.prepare();
             mediaPlayer.start();
@@ -188,7 +179,6 @@ public class SplashActivty extends BaseActivity implements SurfaceHolder.Callbac
                 }
                 builder.append(permsDetail[i]);
             }
-
             builder.append("权限应用才能正常工作");
             String[] deniedPerms = new String[size];
             perms.toArray(deniedPerms);
