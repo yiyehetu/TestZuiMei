@@ -13,12 +13,14 @@ import com.yph.beauty.util.SpUtils;
  */
 
 public class BeautyApp extends Application {
+    private static BeautyApp instance = null;
     private static volatile SpUtils spUtil = null;
 
     @Override
     public void onCreate() {
         super.onCreate();
         LogUtils.init(true, 'v', "TAG");
+        instance = this;
     }
 
     public static SpUtils getSpUtil(Context context){
@@ -31,4 +33,9 @@ public class BeautyApp extends Application {
         }
         return spUtil;
     }
+
+    public static BeautyApp getAppInstance(){
+        return instance;
+    }
+
 }
