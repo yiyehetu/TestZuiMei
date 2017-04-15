@@ -1,6 +1,9 @@
 package com.yph.beauty.api;
 
 import com.yph.beauty.app.BeautyApp;
+import com.yph.beauty.util.LogUtils;
+
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
@@ -19,8 +22,12 @@ public class ApiManager {
 
     private ApiManager(){
         // 缓存
-        Cache cache = new Cache(BeautyApp.getAppInstance().getCacheDir(), 1024 * 1024 * 10);
+        Cache cache = new Cache(BeautyApp.getAppInstance().getExternalCacheDir(), 1024 * 1024 * 10);
         OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(8, TimeUnit.SECONDS)
+                .readTimeout(8, TimeUnit.SECONDS)
+                .writeTimeout(8, TimeUnit.SECONDS)
+                .addInterceptor(new ApiInterceptor())
                 .addNetworkInterceptor(new ApiInterceptor())
                 .cache(cache)
                 .build();
@@ -31,6 +38,8 @@ public class ApiManager {
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
+
+        LogUtils.e("---->Retrofit create sucess");
     }
 
     private static class InnerApiManager{

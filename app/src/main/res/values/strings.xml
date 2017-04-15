@@ -6,4 +6,5 @@
     <string name="four_pager">我</string>
     <string name="add_foucus">+ 关注</string>
     <string name="is_focused">已关注</string>
+    <string name="no_internet">网络迷路了\n点击刷新下</string>
 </resources>

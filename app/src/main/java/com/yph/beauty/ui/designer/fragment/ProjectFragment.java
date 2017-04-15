@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yph.beauty.R;
@@ -32,6 +33,7 @@ import com.yph.beauty.widget.RecyclerViewDivider;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 import static com.yph.beauty.R.id.textView;
 
@@ -54,6 +56,8 @@ public class ProjectFragment extends BaseFragment implements ProjectContract.Vie
     TextView mTextView;
     @BindView(R.id.gridView)
     GridView mGridView;
+    @BindView(R.id.rl_error)
+    RelativeLayout rlError;
 
     private ProjectPresenter mProjectPresenter;
     private DesignerAdapter mDesignerAdapter;
@@ -71,6 +75,7 @@ public class ProjectFragment extends BaseFragment implements ProjectContract.Vie
     protected void initPresenter() {
         currFragment = getArguments().getInt(AppConst.FRAGMENT_POSITON);
         LogUtils.e(TAG, "----> onCreateView = " + currFragment);
+
         if (isInitPresentered) {
             return;
         }
@@ -79,6 +84,7 @@ public class ProjectFragment extends BaseFragment implements ProjectContract.Vie
         isInitPresentered = true;
 
         initNavBar();
+
         // 添加加载刷新
         rootView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -207,7 +213,14 @@ public class ProjectFragment extends BaseFragment implements ProjectContract.Vie
 
     @Override
     public void showListError() {
+        rlError.setVisibility(View.VISIBLE);
+    }
 
+    @OnClick(R.id.rl_error)
+    void hideListError(){
+        rlError.setVisibility(View.GONE);
+        mSwipeRefreshLayout.setRefreshing(true);
+        mProjectPresenter.start();
     }
 
     @Override

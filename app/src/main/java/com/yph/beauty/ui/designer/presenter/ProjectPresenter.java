@@ -128,20 +128,20 @@ public class ProjectPresenter implements ProjectContract.Preseneter {
 
                     @Override
                     public void onError(Throwable e) {
-                        LogUtils.e(TAG, "---->" + e.getMessage());
+                        LogUtils.e(TAG, "---->onError:" + e.getMessage());
                         mView.showListError();
                         mView.finishRefresh();
                     }
 
                     @Override
                     public void onNext(DesignerInfo designerInfo) {
-                        LogUtils.e(TAG, "---->" + designerInfo.toString());
+                        LogUtils.e(TAG, "---->onNext:" + designerInfo.toString());
                         if (designerInfo.getResult() == 1) {
                             // 赋值是否有更多
                             hasNext = (designerInfo.getData().getHas_next() == 1) ? true : false;
                             mView.showList(designerInfo);
                         } else {
-                            mView.showListError();
+//                            mView.showListError();
                         }
                     }
                 });
@@ -163,20 +163,20 @@ public class ProjectPresenter implements ProjectContract.Preseneter {
 
                     @Override
                     public void onError(Throwable e) {
-                        LogUtils.e(TAG, "---->" + e.getMessage());
-                        mView.showListError();
+                        LogUtils.e(TAG, "---->onError:" + e.getMessage());
+//                        mView.showListError();
                         mView.finishRefresh();
                     }
 
                     @Override
                     public void onNext(DesignerInfo designerInfo) {
-                        LogUtils.e(TAG, "---->" + designerInfo.toString());
+                        LogUtils.e(TAG, "---->onNext:" + designerInfo.toString());
                         if (designerInfo.getResult() == 1) {
                             // 赋值是否有更多
                             hasNext = (designerInfo.getData().getHas_next() == 1) ? true : false;
                             mView.showList(designerInfo);
                         } else {
-                            mView.showListError();
+//                            mView.showListError();
                         }
                     }
                 });
@@ -200,19 +200,19 @@ public class ProjectPresenter implements ProjectContract.Preseneter {
 
                     @Override
                     public void onError(Throwable e) {
-                        LogUtils.e(TAG, "---->" + e.getMessage());
-                        mView.showListError();
+                        LogUtils.e(TAG, "---->onError:" + e.getMessage());
+//                        mView.showListError();
                     }
 
                     @Override
                     public void onNext(DesignerInfo designerInfo) {
-                        LogUtils.e(TAG, "---->" + designerInfo.toString());
+                        LogUtils.e(TAG, "---->onNext:" + designerInfo.toString());
                         if (designerInfo.getResult() == 1) {
                             // 赋值是否有更多
                             hasNext = (designerInfo.getData().getHas_next() == 1) ? true : false;
                             mView.showMoreList(designerInfo);
                         } else {
-                            mView.showListError();
+//                            mView.showListError();
                         }
                     }
                 });
@@ -236,19 +236,19 @@ public class ProjectPresenter implements ProjectContract.Preseneter {
 
                     @Override
                     public void onError(Throwable e) {
-                        LogUtils.e(TAG, "---->" + e.getMessage());
-                        mView.showListError();
+                        LogUtils.e(TAG, "---->onError:" + e.getMessage());
+//                        mView.showListError();
                     }
 
                     @Override
                     public void onNext(DesignerInfo designerInfo) {
-                        LogUtils.e(TAG, "---->" + designerInfo.toString());
+                        LogUtils.e(TAG, "---->onNext:" + designerInfo.toString());
                         if (designerInfo.getResult() == 1) {
                             // 赋值是否有更多
                             hasNext = (designerInfo.getData().getHas_next() == 1) ? true : false;
                             mView.showMoreList(designerInfo);
                         } else {
-                            mView.showListError();
+//                            mView.showListError();
                         }
                     }
                 });
@@ -283,12 +283,12 @@ public class ProjectPresenter implements ProjectContract.Preseneter {
 
                     @Override
                     public void onError(Throwable e) {
-                        LogUtils.e(TAG, "---->" + e.getMessage());
+                        LogUtils.e(TAG, "---->onError:" + e.getMessage());
                     }
 
                     @Override
                     public void onNext(DesignerInfo designerInfo) {
-                        LogUtils.e(TAG, "---->" + designerInfo.toString());
+                        LogUtils.e(TAG, "---->onNext:" + designerInfo.toString());
                     }
                 });
     }
